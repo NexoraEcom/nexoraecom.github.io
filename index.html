@@ -1,10 +1,395 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Nexora Ecom</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexora Ecom | Better Everyday Finds</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #17211d;
+      --cream: #f8f6f0;
+      --sage: #dce8df;
+      --green: #265c43;
+      --gold: #d9a441;
+      --muted: #68736c;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: "DM Sans", Arial, sans-serif;
+    }
+
+    .announcement {
+      background: var(--green);
+      color: white;
+      text-align: center;
+      padding: 11px 18px;
+      font-size: 13px;
+      letter-spacing: .04em;
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: auto;
+      height: 82px;
+      padding: 0 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      color: var(--green);
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -.06em;
+      text-decoration: none;
+    }
+
+    .brand span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .cart {
+      border: 1px solid #ced6cf;
+      border-radius: 100px;
+      padding: 10px 15px;
+      background: transparent;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .hero {
+      max-width: 1200px;
+      min-height: 560px;
+      margin: 0 auto 80px;
+      padding: 64px;
+      display: flex;
+      align-items: center;
+      border-radius: 28px;
+      overflow: hidden;
+      color: white;
+      background:
+        linear-gradient(90deg, rgba(18,48,35,.94) 0%, rgba(18,48,35,.67) 47%, rgba(18,48,35,.10) 100%),
+        url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=85") center/cover;
+    }
+
+    .hero-content { max-width: 530px; }
+    .eyebrow {
+      color: #f1d28d;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    h1, h2 { font-family: "Playfair Display", Georgia, serif; }
+    h1 {
+      font-size: clamp(44px, 6vw, 76px);
+      line-height: 1.03;
+      margin: 16px 0;
+      letter-spacing: -.045em;
+    }
+
+    .hero p {
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 440px;
+      margin: 0 0 29px;
+      color: #edf3ee;
+    }
+
+    .button {
+      display: inline-block;
+      border: 0;
+      border-radius: 100px;
+      padding: 15px 25px;
+      background: var(--gold);
+      color: #1f271f;
+      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .2s ease;
+    }
+
+    .button:hover { transform: translateY(-2px); }
+    .button.light { background: white; color: var(--green); }
+
+    .section {
+      max-width: 1200px;
+      margin: 0 auto 90px;
+      padding: 0 25px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    h2 {
+      font-size: clamp(34px, 4vw, 49px);
+      margin: 8px 0 0;
+      letter-spacing: -.04em;
+    }
+
+    .section-head a {
+      color: var(--green);
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 23px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 7px 25px rgba(36, 55, 42, .06);
+    }
+
+    .product-image {
+      height: 270px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .product-body { padding: 20px; }
+    .tag {
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .product h3 { margin: 8px 0 6px; font-size: 18px; }
+    .price { color: var(--muted); font-size: 14px; }
+    .product button {
+      width: 100%;
+      border: 1px solid var(--green);
+      border-radius: 100px;
+      background: white;
+      color: var(--green);
+      margin-top: 17px;
+      padding: 11px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      border-radius: 24px;
+      background: var(--sage);
+    }
+
+    .story-image {
+      min-height: 420px;
+      background: url("https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1000&q=85") center/cover;
+    }
+
+    .story-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px;
+    }
+
+    .story-content p {
+      color: #435048;
+      font-size: 17px;
+      line-height: 1.7;
+      max-width: 440px;
+    }
+
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      text-align: center;
+      gap: 25px;
+    }
+
+    .benefit {
+      padding: 10px 20px;
+      border-right: 1px solid #d8ddd8;
+    }
+
+    .benefit:last-child { border-right: 0; }
+    .benefit strong { display: block; font-size: 17px; margin-bottom: 7px; }
+    .benefit span { color: var(--muted); font-size: 14px; }
+
+    footer {
+      background: #16271d;
+      color: white;
+      padding: 55px 25px 25px;
+    }
+
+    .footer-inner {
+      max-width: 1150px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    footer .brand { color: white; }
+    footer p { color: #b8c5bb; line-height: 1.6; max-width: 330px; }
+    footer a { color: #dce8df; text-decoration: none; font-size: 14px; }
+    .copyright {
+      max-width: 1150px;
+      margin: 40px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid #405246;
+      color: #9daea2;
+      font-size: 13px;
+    }
+
+    @media (max-width: 720px) {
+      nav { height: 70px; padding: 0 18px; }
+      .nav-links { display: none; }
+      .hero { min-height: 500px; margin: 0 14px 65px; padding: 35px 27px; }
+      .products, .benefits, .story { grid-template-columns: 1fr; }
+      .benefit { border-right: 0; border-bottom: 1px solid #d8ddd8; padding: 22px; }
+      .benefit:last-child { border-bottom: 0; }
+      .story-content { padding: 38px 28px; }
+      .story-image { min-height: 260px; }
+      .footer-inner { display: block; }
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to Nexora Ecom</h1>
-  <p>Our website is coming soon.</p>
+  <div class="announcement">Free shipping on selected orders · Welcome to Nexora Ecom</div>
+
+  <nav>
+    <a class="brand" href="#">Nexora<span>Ecom</span></a>
+    <div class="nav-links">
+      <a href="#shop">Shop</a>
+      <a href="#about">Our story</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="cart" onclick="alert('Your cart is empty for now.')">Bag (0)</button>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">Thoughtfully chosen</div>
+        <h1>Everyday finds, elevated.</h1>
+        <p>Discover useful, beautiful essentials selected to make your everyday life feel a little better.</p>
+        <a class="button" href="#shop">Shop the collection</a>
+      </div>
+    </section>
+
+    <section class="section" id="shop">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">New arrivals</div>
+          <h2>Made for your everyday</h2>
+        </div>
+        <a href="#contact">View all products →</a>
+      </div>
+
+      <div class="products">
+        <article class="product">
+          <div class="product-image" style="background-image:url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=85')"></div>
+          <div class="product-body">
+            <div class="tag">Home edit</div>
+            <h3>Minimal Table Lamp</h3>
+            <div class="price">From $24.00</div>
+            <button onclick="alert('Product added! Connect a store platform later to accept orders.')">Add to bag</button>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="product-image" style="background-image:url('https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=800&q=85')"></div>
+          <div class="product-body">
+            <div class="tag">Best seller</div>
+            <h3>Everyday Storage Set</h3>
+            <div class="price">From $18.00</div>
+            <button onclick="alert('Product added! Connect a store platform later to accept orders.')">Add to bag</button>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="product-image" style="background-image:url('https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800&q=85')"></div>
+          <div class="product-body">
+            <div class="tag">New in</div>
+            <h3>Soft Lounge Chair</h3>
+            <div class="price">From $79.00</div>
+            <button onclick="alert('Product added! Connect a store platform later to accept orders.')">Add to bag</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="story">
+        <div class="story-image"></div>
+        <div class="story-content">
+          <div class="eyebrow">Why Nexora Ecom</div>
+          <h2>Simple things, selected with care.</h2>
+          <p>We believe shopping should feel considered, not complicated. Our collection brings together practical products with clean design and lasting appeal.</p>
+          <a class="button light" href="#contact">Get in touch</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section benefits">
+      <div class="benefit">
+        <strong>Curated quality</strong>
+        <span>Useful products selected with care.</span>
+      </div>
+      <div class="benefit">
+        <strong>Secure shopping</strong>
+        <span>Safe checkout will be available soon.</span>
+      </div>
+      <div class="benefit">
+        <strong>Here to help</strong>
+        <span>Friendly support when you need it.</span>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="footer-inner">
+      <div>
+        <a class="brand" href="#">Nexora<span>Ecom</span></a>
+        <p>Better everyday finds, thoughtfully chosen for you.</p>
+      </div>
+      <div>
+        <strong>Contact</strong>
+        <p><a href="mailto:hello@nexoraecom.github.io">hello@nexoraecom.github.io</a><br><br>Follow us on social media soon.</p>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Nexora Ecom. All rights reserved.</div>
+  </footer>
 </body>
 </html>
